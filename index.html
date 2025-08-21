@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI x Bio Conference — Generative Models & Autonomous Labs</title>
+
+  <!-- Artistic, readable fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1: linear-gradient(120deg,#071021 0%, #0b2a3a 35%, #081c2b 100%);
+      --accent: #7be4ff;
+      --accent-2: #a57cff;
+      --muted: #9fb3c8;
+      --card: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.03);
+      --radius: 16px;
+      --maxw: 1100px;
+      --shadow: 0 8px 30px rgba(3,6,15,0.6);
+    }
+
+    html,body{height:100%;}
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: var(--bg1);
+      color: #e6f6ff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:30px 20px;
+      box-sizing:border-box;
+    }
+
+    .container{max-width:var(--maxw);margin:0 auto;}
+
+    /* Header / Hero */
+    header.hero{display:flex;gap:24px;align-items:center;justify-content:space-between;padding:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:20px;box-shadow:var(--shadow);backdrop-filter: blur(6px);}
+    .branding{display:flex;gap:18px;align-items:center}
+    .logo{width:64px;height:64px;border-radius:12px;background:radial-gradient(circle at 20% 20%, var(--accent), var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#012;box-shadow:0 6px 20px rgba(125,80,180,0.15);}
+    .title{font-family:'Playfair Display', serif;font-size:20px;color:var(--accent-2);}
+    .subtitle{font-size:13px;color:var(--muted);}
+
+    .cta-row{display:flex;gap:12px;align-items:center}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:inherit;text-decoration:none;font-weight:600;cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#052024;border:none;box-shadow:0 6px 18px rgba(123,228,255,0.08);}
+    .btn.ghost{background:transparent;border:1px dashed rgba(255,255,255,0.05)}
+
+    /* Hero content */
+    .hero-main{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start;padding:26px 0}
+    .hero-card{background:var(--card);padding:22px;border-radius:14px}
+
+    h1{font-family:'Playfair Display', serif;margin:0;font-size:28px}
+    p.lead{margin:10px 0 18px;color:var(--muted);}
+
+    /* Program summary */
+    .badges{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);font-size:13px}
+
+    /* Themes grid */
+    .themes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:16px}
+    .theme{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;border-left:4px solid rgba(255,255,255,0.04)}
+    .theme h3{margin:0 0 8px;font-size:16px;color:var(--accent)}
+    .theme ul{margin:0;padding-left:16px;color:var(--muted);font-size:14px}
+
+    /* Right column (quick info) */
+    .info{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px}
+    .meta-row{display:flex;justify-content:space-between;gap:8px}
+    .meta{font-size:13px;color:var(--muted)}
+
+    /* Downloads */
+    .downloads{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .download-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+
+    /* Schedule (simple) */
+    .schedule{margin-top:22px;background:var(--glass);padding:12px;border-radius:10px}
+    .session{display:flex;gap:12px;align-items:flex-start;padding:10px;border-bottom:1px dashed rgba(255,255,255,0.02)}
+    .session:last-child{border-bottom:none}
+    .time{width:72px;font-size:13px;color:var(--muted)}
+    .sess-title{font-weight:600}
+    .sess-meta{font-size:13px;color:var(--muted)}
+
+    /* Footer */
+    footer{margin-top:28px;padding:18px;border-radius:12px;background:transparent;display:flex;justify-content:space-between;align-items:center;color:var(--muted);flex-wrap:wrap;gap:10px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero-main{grid-template-columns:1fr;}
+      .themes{grid-template-columns:1fr}
+      .download-grid{grid-template-columns:1fr}
+    }
+
+    @media (max-width:480px){
+      h1{font-size:20px}
+      .title{font-size:16px}
+      .logo{width:54px;height:54px}
+      header.hero{padding:18px}
+      body{padding:16px}
+    }
+
+    /* print friendly */
+    @media print{
+      body{background:white;color:black}
+      .btn{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="branding">
+        <div class="logo">AI</div>
+        <div>
+          <div class="title">AI × Bio Summit 2025 — Conference</div>
+          <div class="subtitle">Generative models • Autonomous labs • Diagnostics & Clinical Phenotyping</div>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn primary" href="#program">View Program</a>
+        <a class="btn" href="mailto:digitbrain@consultant.com">Contact</a>
+      </div>
+    </header>
+
+    <main class="hero-main">
+      <section>
+        <div class="hero-card">
+          <h1>Theme-driven Summit on AI for Molecular Design & Autonomous Science</h1>
+          <p class="lead">Three focused themes and tightly curated subthemes. The conference brings together leaders in generative chemistry, protein design, lab automation, LLM lab agents, and computational diagnostics.</p>
+
+          <div class="badges" aria-hidden>
+            <span class="chip">Hybrid-friendly</span>
+            <span class="chip">Hands-on sessions</span>
+            <span class="chip">Industry & Academia</span>
+            <span class="chip">Poster sessions</span>
+          </div>
+
+          <div id="program" style="margin-top:18px">
+            <h2 style="font-size:18px;margin-bottom:8px;color:var(--accent-2)">Program</h2>
+
+            <!-- Themes -->
+            <div class="themes">
+              <article class="theme">
+                <h3>Theme 1 — Generative & Predictive Models for Molecular & Protein Design</h3>
+                <ul>
+                  <li>Complex structure & interaction prediction</li>
+                  <li>De novo protein design</li>
+                  <li>Generative chemistry for small molecules</li>
+                  <li>Biologics optimization (antibodies, multispecifics)</li>
+                  <li>Nucleic acid design (RNA / ASO / siRNA)</li>
+                  <li>Gene editors designed by AI</li>
+                </ul>
+              </article>
+
+              <article class="theme">
+                <h3>Theme 2 — Autonomous “Self‑Driving” Bio Labs (SDLs) & Agentic Science</h3>
+                <ul>
+                  <li>Robotic high‑throughput experimentation (HTE)</li>
+                  <li>Active learning & Bayesian optimization</li>
+                  <li>LLM lab agents & protocol generation</li>
+                  <li>Cloud labs + data OS (ELN / LIMS / CDP)</li>
+                  <li>Phenotypic screening at scale</li>
+                  <li>Digital twins of cells & bioprocesses</li>
+                </ul>
+              </article>
+
+              <article class="theme">
+                <h3>Theme 3 — AI‑Enabled Diagnostics & Clinical Phenotyping</h3>
+                <ul>
+                  <li>Multimodal EHR + omics foundation models</li>
+                  <li>Computational pathology & histology</li>
+                  <li>Liquid biopsy signal detection</li>
+                </ul>
+              </article>
+            </div>
+
+            <!-- Short schedule sample -->
+            <div class="schedule" aria-label="Sample Schedule">
+              <div style="font-weight:700;margin-bottom:8px">Sample Day — Highlights</div>
+
+              <div class="session">
+                <div class="time">09:00 — 09:40</div>
+                <div>
+                  <div class="sess-title">Keynote: Generative Models for Protein Function</div>
+                  <div class="sess-meta">Speaker: Dr. A. Researcher • 25 min talk + Q&A</div>
+                </div>
+              </div>
+
+              <div class="session">
+                <div class="time">10:00 — 11:00</div>
+                <div>
+                  <div class="sess-title">Panel: Autonomous Labs — Current State & Roadmaps</div>
+                  <div class="sess-meta">Industry leads + academic chairs</div>
+                </div>
+              </div>
+
+              <div class="session">
+                <div class="time">11:15 — 12:00</div>
+                <div>
+                  <div class="sess-title">Demo: LLM-driven Protocol Generation (live demo)</div>
+                  <div class="sess-meta">Demo team • 30 min</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Tools & integrations (visual list) -->
+          <div style="margin-top:18px">
+            <h3 style="margin:8px 0 6px;font-size:15px;color:var(--accent)">Tools & Integrations</h3>
+            <p class="sess-meta">Suggested tools used by organizers and speakers: Wolfram • Zapier • Data Interpreter • Synthesia • Notable • WebPilot • Avian • Scholar AI • World Bank Data • Telescope Labs • Quick Reals • AI Tool Hunt.</p>
+            <p style="margin-top:8px;color:var(--muted);font-size:13px">Note: The static page is ready to accept links or embedded widgets from these services. See the commented HTML below for integration examples.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right column with downloads and practical info -->
+      <aside style="width:100%;max-width:360px;">
+        <div class="info">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <div>
+              <div style="font-weight:700">August 2025</div>
+              <div class="meta">Virtual & In-person • Venue: TBD</div>
+            </div>
+          </div>
+
+          <div style="margin-top:6px">
+            <div class="meta-row">
+              <div class="meta">Organizer</div>
+              <div class="meta">AI x Bio Collective</div>
+            </div>
+            <div class="meta-row" style="margin-top:6px">
+              <div class="meta">Contact</div>
+              <div class="meta"><a href="mailto:digitbrain@consultant.com" style="color:inherit;text-decoration:underline">digitbrain@consultant.com</a></div>
+            </div>
+          </div>
+
+          <div class="downloads">
+            <div style="font-weight:700;margin-top:8px">Downloads</div>
+            <div class="download-grid">
+              <a class="btn" href="/assets/program.pdf" download="AIxBio-program.pdf">📄 Program (PDF)</a>
+              <a class="btn" href="/assets/event-report.pdf" download="AIxBio-event-report.pdf">📑 Event Report</a>
+              <a class="btn" href="/assets/abstract-book.pdf" download="AIxBio-abstracts.pdf">📚 Abstract Book</a>
+              <a class="btn" href="/assets/proceedings.pdf" download="AIxBio-proceedings.pdf">📘 Proceeding Book</a>
+            </div>
+
+            <div style="margin-top:10px;font-size:13px;color:var(--muted)">If files are not available, these buttons can be linked to your file server, S3, GitHub Releases, or a document-management service.</div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <a class="btn ghost" href="/register.html">Register</a>
+            <a class="btn" href="#contact">Sponsor</a>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;font-size:13px;color:var(--muted);">Share this event
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <a class="btn" href="#">Twitter</a>
+            <a class="btn" href="#">LinkedIn</a>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div>© AI x Bio Collective — Designed for readability & mobile. Contact: <a href="mailto:digitbrain@consultant.com" style="color:inherit">digitbrain@consultant.com</a></div>
+      <div style="font-size:13px;color:var(--muted)">Built as a static HTML clone for: <em>Generative & Predictive Models for Molecular and Protein Design</em></div>
+    </footer>
+
+    <!-- Integration comments (developers can use these snippets) -->
+    <!--
+      Integration examples (paste into the body where appropriate):
+
+      1) Embed an iframe for Synthesia or Webinar host (remove autoplay; ensure GDPR compliance):
+         <iframe src="https://your-synthesia-link" title="Synthesia demo" style="width:100%;height:360px;border:0;border-radius:12px"></iframe>
+
+      2) Add a file-hosted download link (S3 signed URL) — replace /assets/... with full URL.
+
+      3) Add a small JavaScript snippet to call Zapier or Webhook when user registers:
+         fetch('https://hooks.zapier.com/hooks/catch/xxx/yyy', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:'user@example.com',event:'register'})})
+
+      4) Display Wolfram or World Bank data via their APIs and insert charts into a div.
+
+      5) To add a short animated "fitude" (interactive figure) use a light JS library like Chart.js or Recharts. For static sites, generate images server-side and link them.
+
+    -->
+
+  </div>
+
+  <script>
+    // Minimal JS to support download-check and mobile accessibility
+    (function(){
+      // optionally check if assets exist and mark buttons disabled if missing
+      const links = document.querySelectorAll('a.btn[download]');
+      links.forEach(a => {
+        const url = a.getAttribute('href');
+        // try HEAD to see if file exists; silent if not supported by host
+        fetch(url, {method:'HEAD'}).then(r => {
+          if (!r.ok) { a.style.opacity = '0.45'; a.setAttribute('aria-disabled','true'); }
+        }).catch(()=>{ /* ignore network errors on static preview */ });
+      });
+    })();
+  </script>
+</body>
+</html>
